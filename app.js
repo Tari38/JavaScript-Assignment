@@ -63,6 +63,25 @@ const playRound = (
   }
 };
 
+
+const getRoundWinnerMessage = (
+    roudWinner,
+    playerSelection,
+    computerSelection
+  ) => {
+    let message = `You picked ${
+      playerSelection || DEFAULT_PLAYER_CHOICE
+    }, computer picked ${computerSelection}, therefore `;
+  
+    if (roudWinner === ROUND_RESULT_DRAW) {
+      return message + ROUND_RESULT_DRAW;
+    } else if (roudWinner === ROUND_RESULT_PLAYER_WINS) {
+      return message + ROUND_RESULT_PLAYER_WINS;
+    } else {
+      return message + ROUND_RESULT_COMPUTER_WINS;
+    }
+  };
+
 function startGame() {
   // ensure that once we started a game we cannot start another game
   if (gameIsRunning) {
@@ -92,6 +111,11 @@ function startGame() {
   }
 
   //console.log(roudWinner);
+
+  alert(getRoundWinnerMessage(roudWinner, playerSelection, computerSelection));
+
+  //TODO:
+  //use the playRound() function to loop 5 times in the game and store the result of each round to get the final winer result
 
   gameIsRunning = false;
 }
