@@ -13,8 +13,18 @@
 
 ### Naming Conventions
 
-- 
-- 
+- Global Variables
+    Use UperCase for const 
+      Example:
+        const ROCK = 'ROCK';
+        const ROUND_RESULT_DRAW = 'DRAW';
+
+    Use camelCase for let variables
+      Example:
+        let playerName;
+
+- Functions : Use camelCase
+      Example: startGame();
 - 
 
 
