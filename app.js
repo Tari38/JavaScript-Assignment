@@ -8,6 +8,7 @@ const SCISSORS = 'SCISSORS';
 const DEFAULT_PLAYER_CHOICE = ROCK;
 
 // FUNCTIONS & GAME LOGIC ----------------------------------------------
+
 const getPlayerSelection = () => {
     const playerSelection = prompt(
       `Choose ${ROCK}, ${PAPER} or ${SCISSORS}`,
@@ -25,6 +26,18 @@ const getPlayerSelection = () => {
     return playerSelection;
   };
 
+  const computerPlay = () => {
+    const randomValue = Math.random();
+    if (randomValue < 0.34) {
+      return ROCK;
+    } else if (randomValue < 0.67) {
+      return PAPER;
+    } else {
+      return SCISSORS;
+    }
+  };
+
+
 function startGame() {
     // ensure that once we started a game we cannot start another game
     if (gameIsRunning) {
@@ -41,6 +54,9 @@ function startGame() {
 
   const playerSelection = getPlayerSelection();
   console.log(playerSelection);
+
+  const computerSelection = computerPlay();
+  console.log(computerSelection);
   
     gameIsRunning = false;
   }
