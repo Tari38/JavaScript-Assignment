@@ -65,7 +65,7 @@ const playRound = (
 
 
 const getRoundWinnerMessage = (
-    roudWinner,
+    roundWinner,
     playerSelection,
     computerSelection
   ) => {
@@ -73,9 +73,9 @@ const getRoundWinnerMessage = (
       playerSelection || DEFAULT_PLAYER_CHOICE
     }, computer picked ${computerSelection}, therefore `;
   
-    if (roudWinner === ROUND_RESULT_DRAW) {
+    if (roundWinner === ROUND_RESULT_DRAW) {
       return message + ROUND_RESULT_DRAW;
-    } else if (roudWinner === ROUND_RESULT_PLAYER_WINS) {
+    } else if (roundWinner === ROUND_RESULT_PLAYER_WINS) {
       return message + ROUND_RESULT_PLAYER_WINS;
     } else {
       return message + ROUND_RESULT_COMPUTER_WINS;
@@ -102,17 +102,17 @@ function startGame() {
   const computerSelection = computerPlay();
   //console.log(computerSelection);
 
-  let roudWinner;
+  let roundWinner;
 
   if (playerSelection) {
-    roudWinner = playRound(computerSelection, playerSelection);
+    roundWinner = playRound(computerSelection, playerSelection);
   } else {
-    roudWinner = playRound(computerSelection);
+    roundWinner = playRound(computerSelection);
   }
 
-  //console.log(roudWinner);
+  //console.log(roundWinner);
 
-  alert(getRoundWinnerMessage(roudWinner, playerSelection, computerSelection));
+  alert(getRoundWinnerMessage(roundWinner, playerSelection, computerSelection));
 
   //TODO:
   //use the playRound() function to loop 5 times in the game and store the result of each round to get the final winer result
