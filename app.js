@@ -120,4 +120,14 @@ function startGame() {
   gameIsRunning = false;
 }
 
-startGame();
+
+  
+  function game() {
+  for (let i = 0 ; i < 5; i++){
+  startGame();
+  playRound()
+  getRoundWinnerMessage()
+  
+  }
+  }
+  game()
