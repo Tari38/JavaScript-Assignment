@@ -240,8 +240,6 @@ function startGame() {
     //send a goodbye message if no
     console.log("Thanks for playing!");
   }
-  restartGame();
-
 }
 
 startGame();
