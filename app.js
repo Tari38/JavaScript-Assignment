@@ -6,15 +6,26 @@ const ROCK = 'ROCK';
 const PAPER = 'PAPER';
 const SCISSORS = 'SCISSORS';
 const DEFAULT_PLAYER_CHOICE = ROCK;
-const ROUND_RESULT_DRAW = 'DRAW';
-const ROUND_RESULT_PLAYER_WINS = 'PLAYER WINS';
-const ROUND_RESULT_COMPUTER_WINS = 'COMPUTER WINS';
+const ROUND_RESULT_DRAW = 'It\'s a draw!';
+const ROUND_RESULT_PLAYER_WINS = 'Yay! You win!';
+const ROUND_RESULT_COMPUTER_WINS = 'You lost! :(';
 const FINAL_RESULT_DRAW = ROUND_RESULT_DRAW;
 const FINAL_RESULT_PLAYER_WINS = ROUND_RESULT_PLAYER_WINS;
 const FINAL_RESULT_COMPUTER_WINS = ROUND_RESULT_COMPUTER_WINS;
 
 
 // FUNCTIONS & GAME LOGIC ----------------------------------------------
+const getPlayerName = () => {
+  // get the players name and capitalise the first letter if needed
+  let playerName = prompt("Welcome to Rock, Paper, Scissors!\nPlease enter your name:");
+  // set name to lowercase first
+  playerName = playerName.toLowerCase();
+  // then capitalise the 1st letter
+  playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1);
+
+  return playerName;
+  
+};
 
 const getPlayerSelection = () => {
   const playerSelection = prompt(
@@ -71,7 +82,7 @@ const getRoundWinnerMessage = (
   ) => {
     let message = `You picked ${
       playerSelection || DEFAULT_PLAYER_CHOICE
-    }, computer picked ${computerSelection}, therefore `;
+    }, computer picked ${computerSelection}. Result:\n `;
   
     if (roundWinner === ROUND_RESULT_DRAW) {
       return message + ROUND_RESULT_DRAW;
@@ -83,68 +94,69 @@ const getRoundWinnerMessage = (
   };
 
 function startGame() {
+  
   // ensure that once we started a game we cannot start another game
   if (gameIsRunning) {
     return;
   }
   gameIsRunning = true;
 
-  //console.log('Game is starting...');
-  alert('Game is starting...');
+  // start game by getting player name, then welcome them
+  playerName = getPlayerName();
+  // greet the player with their name
+  alert(`Hi ${playerName}! Get ready ...`);  
 
-  //TODO:
-  //- insert function to ask the player name and save it
-  //- insert function to greet the player with is name
-function playerName(){
-  let answer = prompt ("What's your name?")
-  alert(`Hi ${answer}!`)
+  function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0 ; i < 5; i++){
+    const playerSelection = getPlayerSelection();
+    console.log(`${playerName} chose ${playerSelection}`);
+
+    const computerSelection = computerPlay();
+    console.log(`Computer chose ${computerSelection}`);
+
+    let roundWinner;
+
+    if (playerSelection) {
+      roundWinner = playRound(computerSelection, playerSelection);
+    } else {
+      roundWinner = playRound(computerSelection);
+    }
+
+    console.log(roundWinner);
+
+    alert(getRoundWinnerMessage(roundWinner, playerSelection, computerSelection));
+
+    if(roundWinner === ROUND_RESULT_DRAW){
+      playerScore += 0;
+    }else if (roundWinner === ROUND_RESULT_PLAYER_WINS){
+      playerScore++;
+    }else if (roundWinner === ROUND_RESULT_COMPUTER_WINS){
+      computerScore++;
+    }
   }
 
-  playerName()
+    const finalResult = () => {
+      if (playerScore > computerScore) {
+        console.log(`${playerName} wins the match!`)
+      } else if (computerScore > playerScore) {
+        console.log(`Better luck next time, ${playerName}. You lose.`)
+      } else
+        console.log("It's a tie!")
+        return finalResult;
+      }
 
-function game (){
-  let playerScore = 0;
-  let computerScore = 0;
+    console.log(`Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}`);
+    finalResult();
 
-  for (let i = 0 ; i < 5; i++){
-  const playerSelection = getPlayerSelection();
-  // console.log(playerSelection);
-
-  const computerSelection = computerPlay();
-  // console.log(computerSelection);
-
-  let roundWinner;
-
-  if (playerSelection) {
-    roundWinner = playRound(computerSelection, playerSelection);
-  } else {
-    roundWinner = playRound(computerSelection);
   }
 
-  // console.log(roundWinner);
+  game();
 
-  alert(getRoundWinnerMessage(roundWinner, playerSelection, computerSelection));
-
-//TODO:
-//use the playRound() function to loop 5 times in the game and store the result of each round to get the final winer result
-  if(roundWinner === ROUND_RESULT_DRAW){
-    playerScore += 0
-  }else if (roundWinner === ROUND_RESULT_PLAYER_WINS){
-    playerScore +=1
-  }else if (roundWinner === ROUND_RESULT_COMPUTER_WINS){
-    computerScore +=1
   }
-}
 
-alert(`Final result
-Computer: ${computerScore}, Player: ${playerScore}`);
-
-}
-
-game()
-
-}
-
-gameIsRunning = false;
+  gameIsRunning = false;
 
 startGame();
