@@ -5,9 +5,9 @@ const PAPER = 'PAPER';
 const SCISSORS = 'SCISSORS';
 const DEFAULT_PLAYER_SELECTION = ROCK;
 const DEFAULT_PLAYER_NAME = 'PLAYER';
-const ROUND_RESULT_DRAW = 'It\'s a draw!';
-const ROUND_RESULT_PLAYER_WINS = 'Yay! You win!';
-const ROUND_RESULT_COMPUTER_WINS = 'You lost! :(';
+const ROUND_RESULT_DRAW = 'It\'s a draw! 😐';
+const ROUND_RESULT_PLAYER_WINS = 'Yay! You win! 🥳';
+const ROUND_RESULT_COMPUTER_WINS = 'You lost! 😭';
 const FINAL_RESULT_DRAW = ROUND_RESULT_DRAW;
 const FINAL_RESULT_PLAYER_WINS = ROUND_RESULT_PLAYER_WINS;
 const FINAL_RESULT_COMPUTER_WINS = ROUND_RESULT_COMPUTER_WINS;
@@ -48,7 +48,7 @@ const ASCII_ART = `
 const getPlayerName = () => {
   // get the players name and capitalise the first letter if needed
   playerName = prompt(
-    'Welcome to Rock, Paper, Scissors!\nPlease enter your name:'
+    '😀 Welcome to Rock, Paper, Scissors!\nPlease enter your name:'
   );
   // set name to lowercase first
   playerName = playerName.toLowerCase();
@@ -57,9 +57,9 @@ const getPlayerName = () => {
 
   if (!playerName) {
     console.log(
-      `Invalid choice! We choose ${DEFAULT_PLAYER_NAME} name for you!`
+      `⚠ Invalid choice! We choose ${DEFAULT_PLAYER_NAME} name for you!`
     );
-    alert(`Invalid choice! We choose ${DEFAULT_PLAYER_NAME} name for you!`);
+    alert(`⚠ Invalid choice! We choose ${DEFAULT_PLAYER_NAME} name for you!`);
     return (playerName = DEFAULT_PLAYER_NAME);
   }
 
@@ -80,9 +80,9 @@ const getPlayerSelection = () => {
     playerSelection !== SCISSORS
   ) {
     console.log(
-      `Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`
+      `⚠ Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`
     );
-    alert(`Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`);
+    alert(`⚠ Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`);
 
     return DEFAULT_PLAYER_SELECTION;
   }
@@ -120,14 +120,6 @@ const playRound = (
     return ROUND_RESULT_COMPUTER_WINS;
   }
 
-  //using a ternary expression
-  //   return computerSelection === playerSelection
-  //     ? ROUND_RESULT_DRAW
-  //     : (computerSelection === ROCK && playerSelection === PAPER) ||
-  //       (computerSelection === PAPER && playerSelection === SCISSORS) ||
-  //       (computerSelection === SCISSORS && playerSelection === ROCK)
-  //     ? ROUND_RESULT_PLAYER_WINS
-  //     : ROUND_RESULT_COMPUTER_WINS;
 };
 
 const getRoundWinnerMessage = (
@@ -151,25 +143,16 @@ const getRoundWinnerMessage = (
 // Play the 5 rounds
 function game() {
   let roundCounter = 0;
-  
-  console.log(ASCII_ART);
-  
+    
   // loop the rounds 5 times
   for (let i = 0; i < 5; i++) {
     //counting rounds
     roundCounter = 'ROUND ' + (i + 1);
 
-    // get player choice and console log it
     const playerSelection = getPlayerSelection();
-    console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
-    alert(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
 
-    // get computer choice and console log it
     const computerSelection = computerPlay();
-    console.log(`Computer chose ${computerSelection}`);
-    alert(`Computer chose ${computerSelection}`);
 
-    // set round winner to undefined
     let roundWinner;
 
     // get round winner
@@ -178,9 +161,6 @@ function game() {
     } else {
       roundWinner = playRound(computerSelection);
     }
-    // show round winner in the log
-    // console.log(roundWinner);
-    // alert(roundWinner);
 
     // create a pop up alert for the player
     console.log(
@@ -208,24 +188,24 @@ function game() {
 // comparing the final score
 function finalResult() {
   if (playerScore > computerScore) {
-    console.log(`${playerName} wins the match!`); // if playerscore beats computerscore = win
-    alert(`${playerName} wins the match!`);
+    console.log(`${playerName} wins the match! 🥳`); // if playerscore beats computerscore = win
+    alert(`${playerName} wins the match! 🥳`);
   } else if (computerScore > playerScore) {
-    console.log(`Better luck next time, ${playerName}. You lose.`); // if computerscore beats playerscore = lose
-    alert(`Better luck next time, ${playerName}. You lose.`);
+    console.log(`Better luck next time, ${playerName}. You lose. 😭`); // if computerscore beats playerscore = lose
+    alert(`Better luck next time, ${playerName}. You lose. 😭`);
   } else {
-    console.log("It's a tie!");
-    alert("It's a tie!");
+    console.log("It's a tie! 😐");
+    alert("It's a tie! 😐");
   }
 }
 
 // show player final scores
 function finalScores() {
   console.log(
-    `Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
+    `🏁 Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
   );
   alert(
-    `Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
+    `🏁 Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
   );
 }
 
@@ -239,8 +219,8 @@ function startGame() {
   // start game by getting player name, then welcome them
   playerName = getPlayerName();
   // greet the player with their name
-  console.log(`Hi ${playerName}! The game has 5 rounds! Get ready ...`);
-  alert(`Hi ${playerName}! The game has 5 rounds! Get ready ...`);
+  console.log(`Hi ${playerName}! The game has 5 rounds! Get ready ...\n${ASCII_ART}`);
+  alert(`Hi ${playerName}! The game has 5 rounds! Get ready ...🚦`);
 
   game();
 
