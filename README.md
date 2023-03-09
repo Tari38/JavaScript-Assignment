@@ -53,5 +53,5 @@
 1.  **Rock Beats Scissors**
 2.  **Scissors Beats Paper**  
 3.  **Paper Beats Rock**
-4.  **It's a Tie!**
+4.  **It's a Draw!**
 
