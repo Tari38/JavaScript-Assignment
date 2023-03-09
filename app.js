@@ -232,7 +232,7 @@ function startGame() {
 
   finalResult();
   // ask the user if they want to restart the game (yes or no prompt)
-  let restart = prompt("Do you want to restart the game? (Y)").toLowerCase();
+  let restart = prompt("Do you want to restart the game? (Y or N)").toLowerCase();
   if (restart === "Y" || "yes" ) {
     //restart the game if yes
     restartGame();
