@@ -119,12 +119,12 @@ const playRound = (
 
 const getRoundWinnerMessage = (
   roundWinner
-) => {  
+) => {
   if (roundWinner === ROUND_RESULT_DRAW) {
     return ROUND_RESULT_DRAW;
   } else if (roundWinner === ROUND_RESULT_PLAYER_WINS) {
     return ROUND_RESULT_PLAYER_WINS;
-  } else 
+  } else
     return ROUND_RESULT_COMPUTER_WINS;
 };
 
@@ -134,7 +134,7 @@ function game() {
   // console.log(ASCII_ART);
 
   let roundCounter = 0;
-    
+
   // loop the rounds 5 times
   for (let i = 0; i < 5; i++) {
     //counting rounds
@@ -222,10 +222,23 @@ function startGame() {
   game();
 
   finalScores();
-  
-  finalResult();
 
-  gameIsRunning = false;
+  finalResult();
+  //restart the game
+  restartGame();
+
 }
+
+function restartGame() {
+  // reset the variables to their initial values
+  gameIsRunning = false;
+  round = 1;
+  playerScore = 0;
+  computerScore = 0;
+
+  // call startGame() function again
+  startGame();
+}
+
 
 startGame();
