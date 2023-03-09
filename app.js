@@ -131,8 +131,6 @@ const getRoundWinnerMessage = (
 // Play the 5 rounds
 function game() {
 
-  // console.log(ASCII_ART);
-
   let roundCounter = 0;
     
   // loop the rounds 5 times
@@ -143,12 +141,8 @@ function game() {
     const playerSelection = getPlayerSelection();
     const computerSelection = computerPlay();
 
-    console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION} & Computer chose ${computerSelection}`);
-    // alert(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
-
-    // console.log(`Computer chose ${computerSelection}`);
-    // alert(`Computer chose ${computerSelection}`);
-
+    console.log(`${roundCounter}:\n${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION} & Computer chose ${computerSelection}`);
+    
     let roundWinner;
 
     // get round winner
@@ -160,13 +154,9 @@ function game() {
 
     // create a pop up alert for the player
     console.log(
-      roundCounter +
-        ': \n' +
         getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
     );
     alert(
-      roundCounter +
-        ': \n' +
         getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
     );
 
