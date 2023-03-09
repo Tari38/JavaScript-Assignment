@@ -108,7 +108,7 @@ function startGame() {
   // start game by getting player name, then welcome them
   playerName = getPlayerName();
   // greet the player with their name
-  alert(`Hi ${playerName}! Get ready ...`);  
+  alert(`Hi ${playerName}! The game has 5 rounds! Get ready ...`);  
 
   // THE GAME FUNCTION
   function game() {
