@@ -13,7 +13,27 @@ const FINAL_RESULT_DRAW = ROUND_RESULT_DRAW;
 const FINAL_RESULT_PLAYER_WINS = ROUND_RESULT_PLAYER_WINS;
 const FINAL_RESULT_COMPUTER_WINS = ROUND_RESULT_COMPUTER_WINS;
 
-
+const ASCII_ART = `
+⠀⠀⠀⠀⠀⣠⡴⠖⠒⠲⠶⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠖⠒⢶⣄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⡾⠁⠀⣀⠔⠁⠀⠀⠈⠙⠷⣤⠦⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠋⠀⠀⠀⢀⡿⠀⠀⠀⠀⠀⠀⠀
+⣠⠞⠛⠛⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⠈⢿⡀⢠⡶⠒⠳⠶⣄⠀⠀⠀⠀⠀⣴⠟⠁⠀⠀⠀⣰⠏⠀⢀⣤⣤⣄⡀⠀⠀
+⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠟⠛⠛⠃⠸⡇⠈⣇⠸⡇⠀⠀⠀⠘⣇⠀⠀⣠⡾⠁⠀⠀⠀⢀⣾⣣⡴⠚⠉⠀⠀⠈⠹⡆⠀
+⣹⡷⠤⠤⠤⠄⠀⠀⠀⠀⢠⣤⡤⠶⠖⠛⠀⣿⠀⣿⠀⢻⡄⠀⠀⠀⢻⣠⡾⠋⠀⠀⠀⠀⣠⡾⠋⠁⠀⠀⠀⠀⢀⣠⡾⠃⠀
+⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡤⠖⠋⢀⣿⣠⠏⠀⠀⣿⠀⠀⠀⠘⠉⠀⠀⠀⠀⠀⡰⠋⠀⠀⠀⠀⠀⣠⠶⠋⠁⠀⠀⠀
+⢿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠁⠀⠀⠠⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠁⠀⠀⠀⢀⣴⡿⠥⠶⠖⠛⠛⢶⡄
+⠀⠉⢿⡋⠉⠉⠁⠀⠀⠀⠀⠀⢀⣠⠾⠋⠀⠀⠀⠀⢀⣰⡇⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠀⠀⠀⠀⠀⢀⣠⠼⠃
+⠀⠀⠈⠛⠶⠦⠤⠤⠤⠶⠶⠛⠋⠁⠀⠀⠀⠀⠀⠀⣿⠉⣇⠀⡴⠟⠁⣠⡾⠃⠀⠀⠀⠀⠀⠈⠀⠀⠀⣀⣤⠶⠛⠉⠀⠀⠀
+⠀⠀⠀⠀⢀⣠⣤⣀⣠⣤⠶⠶⠒⠶⠶⣤⣀⠀⠀⠀⢻⡄⠹⣦⠀⠶⠛⢁⣠⡴⠀⠀⠀⠀⠀⠀⣠⡶⠛⠉⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⡴⠋⣠⠞⠋⠁⠀⠀⠀⠀⠙⣄⠀⠙⢷⡀⠀⠀⠻⣄⠈⢷⣄⠈⠉⠁⠀⠀⠀⢀⣠⡴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⡾⠁⣴⠋⠰⣤⣄⡀⠀⠀⠀⠀⠈⠳⢤⣼⣇⣀⣀⠀⠉⠳⢤⣭⡿⠒⠶⠶⠒⠚⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢸⠃⢰⠇⠰⢦⣄⡈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠛⠛⠓⠲⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠸⣧⣿⠀⠻⣤⡈⠛⠳⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠈⠹⣆⠀⠈⠛⠂⠀⠀⠀⠀⠀⠀⠈⠐⠒⠒⠶⣶⣶⠶⠤⠤⣤⣠⡼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠹⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠳⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠻⣦⣀⠀⠀⠀⠀⠐⠲⠤⣤⣀⡀⠀⠀⠀⠀⠀⠉⢳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠶⠤⠤⠤⠶⠞⠋⠉⠙⠳⢦⣄⡀⠀⠀⠀⡷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠳⠦⠾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+`
 // FUNCTIONS & GAME LOGIC ----------------------------------------------
 
 // GET PLAYERS NAME
@@ -112,44 +132,45 @@ function startGame() {
 
   // THE GAME FUNCTION
   function game() {
+    console.log(ASCII_ART);
     // set scores to 0;
     let playerScore = 0;
     let computerScore = 0;
 
     // loop the rounds 5 times
     for (let i = 0 ; i < 5; i++)  {
+    
+      // get player choice and console log it
+      const playerSelection = getPlayerSelection();
+      console.log(`${playerName} chose ${playerSelection}`);
 
-    // get player choice and console log it
-    const playerSelection = getPlayerSelection();
-    console.log(`${playerName} chose ${playerSelection}`);
+      // get computer choice and console log it
+      const computerSelection = computerPlay();
+      console.log(`Computer chose ${computerSelection}`);
 
-    // get computer choice and console log it
-    const computerSelection = computerPlay();
-    console.log(`Computer chose ${computerSelection}`);
+      // set round winner to undefined
+      let roundWinner;
 
-    // set round winner to undefined
-    let roundWinner;
+      // get round winner
+      if (playerSelection) {
+        roundWinner = playRound(computerSelection, playerSelection);
+      } else {
+        roundWinner = playRound(computerSelection);
+      }
+      // show round winner in the log
+      console.log(roundWinner);
+      // create a pop up alert for the player
+      alert(getRoundWinnerMessage(roundWinner, playerSelection, computerSelection));
 
-    // get round winner
-    if (playerSelection) {
-      roundWinner = playRound(computerSelection, playerSelection);
-    } else {
-      roundWinner = playRound(computerSelection);
+      // scoring logic
+      if(roundWinner === ROUND_RESULT_DRAW){
+        playerScore += 0; // if a draw, no points added
+      }else if (roundWinner === ROUND_RESULT_PLAYER_WINS){
+        playerScore++; // if player wins, add a point to player score
+      }else if (roundWinner === ROUND_RESULT_COMPUTER_WINS){
+        computerScore++; // if computer wins, add a point to computer score
+      }
     }
-    // show round winner in the log
-    console.log(roundWinner);
-    // create a pop up alert for the player
-    alert(getRoundWinnerMessage(roundWinner, playerSelection, computerSelection));
-
-    // scoring logic
-    if(roundWinner === ROUND_RESULT_DRAW){
-      playerScore += 0; // if a draw, no points added
-    }else if (roundWinner === ROUND_RESULT_PLAYER_WINS){
-      playerScore++; // if player wins, add a point to player score
-    }else if (roundWinner === ROUND_RESULT_COMPUTER_WINS){
-      computerScore++; // if computer wins, add a point to computer score
-    }
-  }
 
     // comparing the final score
     const finalResult = () => {
