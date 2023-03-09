@@ -132,7 +132,7 @@ function game() {
 
   console.log(ASCII_ART);
 
-  let roundCounter = 1;
+  let roundCounter = 0;
     
   // loop the rounds 5 times
   for (let i = 0; i < 5; i++) {
@@ -141,12 +141,12 @@ function game() {
 
     // get player choice and console log it
     const playerSelection = getPlayerSelection();
-    console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
+    // console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
     // alert(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
 
     // get computer choice and console log it
     const computerSelection = computerPlay();
-    console.log(`Computer chose ${computerSelection}`);
+    // console.log(`Computer chose ${computerSelection}`);
     // alert(`Computer chose ${computerSelection}`);
 
     let roundWinner;
@@ -158,7 +158,7 @@ function game() {
       roundWinner = playRound(computerSelection);
     }
     // show round winner in the log
-    // console.log(roundWinner);
+    console.log(roundWinner);
     // alert(roundWinner);
 
     // create a pop up alert for the player
@@ -206,7 +206,7 @@ function finalScores() {
     alert(
       `Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
       );
-    finalResult();
+    // finalResult();
 }
 
 function startGame() {
@@ -226,7 +226,7 @@ function startGame() {
 
   finalScores();
   
-  // finalResult();
+  finalResult();
 
   gameIsRunning = false;
 }
