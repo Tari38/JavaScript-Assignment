@@ -123,5 +123,7 @@ function startGame() {
 }
   //TODO:
   //use the playRound() function to loop 5 times in the game and store the result of each round to get the final winer result
-  
+
+gameIsRunning = false;
+
 startGame();
