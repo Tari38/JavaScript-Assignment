@@ -15,6 +15,8 @@ const FINAL_RESULT_COMPUTER_WINS = ROUND_RESULT_COMPUTER_WINS;
 
 
 // FUNCTIONS & GAME LOGIC ----------------------------------------------
+
+// GET PLAYERS NAME
 const getPlayerName = () => {
   // get the players name and capitalise the first letter if needed
   let playerName = prompt("Welcome to Rock, Paper, Scissors!\nPlease enter your name:");
@@ -22,11 +24,10 @@ const getPlayerName = () => {
   playerName = playerName.toLowerCase();
   // then capitalise the 1st letter
   playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1);
-
-  return playerName;
-  
+  return playerName;  
 };
 
+// GET PLAYER CHOICE
 const getPlayerSelection = () => {
   const playerSelection = prompt(
     `Choose ${ROCK}, ${PAPER} or ${SCISSORS}`,
@@ -44,37 +45,39 @@ const getPlayerSelection = () => {
   return playerSelection;
 };
 
+// GET COMPUTER CHOICE
 const computerPlay = () => {
-  const randomValue = Math.random();
-  if (randomValue < 0.34) {
-    return ROCK;
-  } else if (randomValue < 0.67) {
-    return PAPER;
-  } else {
-    return SCISSORS;
+  for (i=0; i<3; i++) {
+    const randomValue = Math.floor(Math.random() * 3);
+    if (randomValue === 0) {
+      return ROCK;
+    } else if (randomValue === 1) {
+      return PAPER;
+    } else {
+      return SCISSORS;
+    }
   }
 };
 
-//TODO:
-//use this function to loop 5 times in the game and store the result of each round to get the final result
+// LOGIC TO PLAY A SINGLE ROUND
 const playRound = (
   computerSelection,
   playerSelection = DEFAULT_PLAYER_CHOICE
 ) => {
   if (computerSelection === playerSelection) {
-    return ROUND_RESULT_DRAW;
+    return ROUND_RESULT_DRAW; // will return global variable message ("it's a draw!")
   } else if (
     (computerSelection === ROCK && playerSelection === PAPER) ||
     (computerSelection === PAPER && playerSelection === SCISSORS) ||
     (computerSelection === SCISSORS && playerSelection === ROCK)
   ) {
-    return ROUND_RESULT_PLAYER_WINS;
+    return ROUND_RESULT_PLAYER_WINS; // will return global variable message ("Yay! You win!")
   } else {
-    return ROUND_RESULT_COMPUTER_WINS;
+    return ROUND_RESULT_COMPUTER_WINS; // will return global variable message ("You lost! :(")
   }
 };
 
-
+// DISPLAY THE GLOBAL VARIABLE MESSAGE
 const getRoundWinnerMessage = (
     roundWinner,
     playerSelection,
@@ -93,6 +96,7 @@ const getRoundWinnerMessage = (
     }
   };
 
+// LOGIC TO START GAME
 function startGame() {
   
   // ensure that once we started a game we cannot start another game
@@ -106,50 +110,60 @@ function startGame() {
   // greet the player with their name
   alert(`Hi ${playerName}! Get ready ...`);  
 
+  // THE GAME FUNCTION
   function game() {
+    // set scores to 0;
     let playerScore = 0;
     let computerScore = 0;
 
-    for (let i = 0 ; i < 5; i++){
+    // loop the rounds 5 times
+    for (let i = 0 ; i < 5; i++)  {
+
+    // get player choice and console log it
     const playerSelection = getPlayerSelection();
     console.log(`${playerName} chose ${playerSelection}`);
 
+    // get computer choice and console log it
     const computerSelection = computerPlay();
     console.log(`Computer chose ${computerSelection}`);
 
+    // set round winner to undefined
     let roundWinner;
 
+    // get round winner
     if (playerSelection) {
       roundWinner = playRound(computerSelection, playerSelection);
     } else {
       roundWinner = playRound(computerSelection);
     }
-
+    // show round winner in the log
     console.log(roundWinner);
-
+    // create a pop up alert for the player
     alert(getRoundWinnerMessage(roundWinner, playerSelection, computerSelection));
 
+    // scoring logic
     if(roundWinner === ROUND_RESULT_DRAW){
-      playerScore += 0;
+      playerScore += 0; // if a draw, no points added
     }else if (roundWinner === ROUND_RESULT_PLAYER_WINS){
-      playerScore++;
+      playerScore++; // if player wins, add a point to player score
     }else if (roundWinner === ROUND_RESULT_COMPUTER_WINS){
-      computerScore++;
+      computerScore++; // if computer wins, add a point to computer score
     }
   }
 
+    // comparing the final score
     const finalResult = () => {
       if (playerScore > computerScore) {
-        console.log(`${playerName} wins the match!`)
+        console.log(`${playerName} wins the match!`) // if playerscore beats computerscore = win
       } else if (computerScore > playerScore) {
-        console.log(`Better luck next time, ${playerName}. You lose.`)
+        console.log(`Better luck next time, ${playerName}. You lose.`) // if computerscore beats playerscore = lose
       } else
         console.log("It's a tie!")
-        return finalResult;
+        return finalResult; // if score is equal = tie
       }
 
-    console.log(`Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}`);
-    finalResult();
+    console.log(`Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}`); // show player final scores
+    finalResult(); // declare the winner
 
   }
 
