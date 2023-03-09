@@ -144,10 +144,6 @@ function game() {
     const computerSelection = computerPlay();
 
     console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION} & Computer chose ${computerSelection}`);
-    // alert(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
-
-    // console.log(`Computer chose ${computerSelection}`);
-    // alert(`Computer chose ${computerSelection}`);
 
     let roundWinner;
 
