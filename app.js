@@ -62,7 +62,6 @@ const getPlayerName = () => {
     alert(`⚠ Invalid choice! We choose ${DEFAULT_PLAYER_NAME} name for you!`);
     return (playerName = DEFAULT_PLAYER_NAME);
   }
-
   return playerName;
 };
 
@@ -72,8 +71,6 @@ const getPlayerSelection = () => {
     `Choose ${ROCK}, ${PAPER} or ${SCISSORS}`,
     ''
   ).toUpperCase();
-
-
   if (
     playerSelection !== ROCK &&
     playerSelection !== PAPER &&
@@ -83,7 +80,6 @@ const getPlayerSelection = () => {
       `⚠ Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`
     );
     alert(`⚠ Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`);
-
     return DEFAULT_PLAYER_SELECTION;
   }
   return playerSelection;
@@ -119,29 +115,24 @@ const playRound = (
   } else {
     return ROUND_RESULT_COMPUTER_WINS;
   }
-
 };
 
 const getRoundWinnerMessage = (
-  roundWinner,
-  playerSelection,
-  computerSelection
-) => {
-  let message = `You picked ${
-    playerSelection || DEFAULT_PLAYER_SELECTION
-  }, computer picked ${computerSelection}, Result:\n `;
-
+  roundWinner
+) => {  
   if (roundWinner === ROUND_RESULT_DRAW) {
-    return message + ROUND_RESULT_DRAW;
+    return ROUND_RESULT_DRAW;
   } else if (roundWinner === ROUND_RESULT_PLAYER_WINS) {
-    return message + ROUND_RESULT_PLAYER_WINS;
-  } else {
-    return message + ROUND_RESULT_COMPUTER_WINS;
-  }
+    return ROUND_RESULT_PLAYER_WINS;
+  } else 
+    return ROUND_RESULT_COMPUTER_WINS;
 };
 
 // Play the 5 rounds
 function game() {
+
+  console.log(ASCII_ART);
+
   let roundCounter = 0;
     
   // loop the rounds 5 times
@@ -151,7 +142,13 @@ function game() {
 
     const playerSelection = getPlayerSelection();
 
+    // console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
+    // alert(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
+
     const computerSelection = computerPlay();
+
+    // console.log(`Computer chose ${computerSelection}`);
+    // alert(`Computer chose ${computerSelection}`);
 
     let roundWinner;
 
@@ -219,6 +216,7 @@ function startGame() {
   // start game by getting player name, then welcome them
   playerName = getPlayerName();
   // greet the player with their name
+
   console.log(`Hi ${playerName}! The game has 5 rounds! Get ready ...\n${ASCII_ART}`);
   alert(`Hi ${playerName}! The game has 5 rounds! Get ready ...🚦`);
 
