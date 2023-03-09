@@ -201,6 +201,17 @@ function finalScores() {
   );
 }
 
+function restartGame() {
+  // reset the variables to their initial values
+  gameIsRunning = false;
+  round = 1;
+  playerScore = 0;
+  computerScore = 0;
+
+  // call startGame() function again
+  startGame();
+}
+
 function startGame() {
   // ensure that once we started a game we cannot start another game
   if (gameIsRunning) {
@@ -220,21 +231,24 @@ function startGame() {
   finalScores();
 
   finalResult();
-  //restart the game
+  // ask the user if they want to restart the game (yes or no prompt)
+  let restart = prompt("Do you want to restart the game? (Y)").toLowerCase();
+  if (restart === "Y" || "yes" ) {
+    //restart the game if yes
+    restartGame();
+  } else {
+    //send a goodbye message if no
+    console.log("Thanks for playing!");
+  }
   restartGame();
 
 }
 
-function restartGame() {
-  // reset the variables to their initial values
-  gameIsRunning = false;
-  round = 1;
-  playerScore = 0;
-  computerScore = 0;
+startGame();
 
-  // call startGame() function again
-  startGame();
-}
+  finalResult();
+
+
 
 
 startGame();
