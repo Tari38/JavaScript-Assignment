@@ -95,18 +95,23 @@ function startGame() {
   //TODO:
   //- insert function to ask the player name and save it
   //- insert function to greet the player with is name
-  function playerName(){
-    let answer = prompt ("What's your name?")
-    alert(`Hi ${answer}!`)
+function playerName(){
+  let answer = prompt ("What's your name?")
+  alert(`Hi ${answer}!`)
   }
+
   playerName()
+
+function game (){
+  let playerScore = 0;
+  let computerScore = 0;
 
   for (let i = 0 ; i < 5; i++){
   const playerSelection = getPlayerSelection();
-  console.log(playerSelection);
+  // console.log(playerSelection);
 
   const computerSelection = computerPlay();
-  console.log(computerSelection);
+  // console.log(computerSelection);
 
   let roundWinner;
 
@@ -116,13 +121,29 @@ function startGame() {
     roundWinner = playRound(computerSelection);
   }
 
-  console.log(roundWinner);
+  // console.log(roundWinner);
 
   alert(getRoundWinnerMessage(roundWinner, playerSelection, computerSelection));
+
+//TODO:
+//use the playRound() function to loop 5 times in the game and store the result of each round to get the final winer result
+  if(roundWinner === ROUND_RESULT_DRAW){
+    playerScore += 0
+  }else if (roundWinner === ROUND_RESULT_PLAYER_WINS){
+    playerScore +=1
+  }else if (roundWinner === ROUND_RESULT_COMPUTER_WINS){
+    computerScore +=1
+  }
 }
+
+alert(`Final result
+Computer: ${computerScore}, Player: ${playerScore}`);
+
 }
-  //TODO:
-  //use the playRound() function to loop 5 times in the game and store the result of each round to get the final winer result
+
+game()
+
+}
 
 gameIsRunning = false;
 
