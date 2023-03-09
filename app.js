@@ -245,10 +245,3 @@ function startGame() {
 }
 
 startGame();
-
-  finalResult();
-
-
-
-
-startGame();
