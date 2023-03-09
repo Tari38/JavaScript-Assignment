@@ -56,9 +56,6 @@ const getPlayerName = () => {
   playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1);
 
   if (!playerName) {
-    console.log(
-      `Invalid choice! We choose ${DEFAULT_PLAYER_NAME} name for you!`
-    );
     alert(`Invalid choice! We choose ${DEFAULT_PLAYER_NAME} name for you!`);
     return (playerName = DEFAULT_PLAYER_NAME);
   }
@@ -72,16 +69,14 @@ const getPlayerSelection = () => {
     `Choose ${ROCK}, ${PAPER} or ${SCISSORS}`,
     ''
   ).toUpperCase();
-
-
   if (
     playerSelection !== ROCK &&
     playerSelection !== PAPER &&
     playerSelection !== SCISSORS
   ) {
-    console.log(
-      `Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`
-    );
+    // console.log(
+    //   `Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`
+    // );
     alert(`Invalid choice! We choose ${DEFAULT_PLAYER_SELECTION} for you!`);
 
     return DEFAULT_PLAYER_SELECTION;
@@ -119,41 +114,26 @@ const playRound = (
   } else {
     return ROUND_RESULT_COMPUTER_WINS;
   }
-
-  //using a ternary expression
-  //   return computerSelection === playerSelection
-  //     ? ROUND_RESULT_DRAW
-  //     : (computerSelection === ROCK && playerSelection === PAPER) ||
-  //       (computerSelection === PAPER && playerSelection === SCISSORS) ||
-  //       (computerSelection === SCISSORS && playerSelection === ROCK)
-  //     ? ROUND_RESULT_PLAYER_WINS
-  //     : ROUND_RESULT_COMPUTER_WINS;
 };
 
 const getRoundWinnerMessage = (
-  roundWinner,
-  playerSelection,
-  computerSelection
-) => {
-  let message = `You picked ${
-    playerSelection || DEFAULT_PLAYER_SELECTION
-  }, computer picked ${computerSelection}, Result:\n `;
-
+  roundWinner
+) => {  
   if (roundWinner === ROUND_RESULT_DRAW) {
-    return message + ROUND_RESULT_DRAW;
+    return ROUND_RESULT_DRAW;
   } else if (roundWinner === ROUND_RESULT_PLAYER_WINS) {
-    return message + ROUND_RESULT_PLAYER_WINS;
-  } else {
-    return message + ROUND_RESULT_COMPUTER_WINS;
-  }
+    return ROUND_RESULT_PLAYER_WINS;
+  } else 
+    return ROUND_RESULT_COMPUTER_WINS;
 };
 
 // Play the 5 rounds
 function game() {
-  let roundCounter = 0;
-  
+
   console.log(ASCII_ART);
-  
+
+  let roundCounter = 1;
+    
   // loop the rounds 5 times
   for (let i = 0; i < 5; i++) {
     //counting rounds
@@ -162,14 +142,13 @@ function game() {
     // get player choice and console log it
     const playerSelection = getPlayerSelection();
     console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
-    alert(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
+    // alert(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION}`);
 
     // get computer choice and console log it
     const computerSelection = computerPlay();
     console.log(`Computer chose ${computerSelection}`);
-    alert(`Computer chose ${computerSelection}`);
+    // alert(`Computer chose ${computerSelection}`);
 
-    // set round winner to undefined
     let roundWinner;
 
     // get round winner
@@ -214,8 +193,8 @@ function finalResult() {
     console.log(`Better luck next time, ${playerName}. You lose.`); // if computerscore beats playerscore = lose
     alert(`Better luck next time, ${playerName}. You lose.`);
   } else {
-    console.log("It's a tie!");
-    alert("It's a tie!");
+    console.log("It's a draw!");
+    alert("It's a draw!");
   }
 }
 
@@ -223,10 +202,11 @@ function finalResult() {
 function finalScores() {
   console.log(
     `Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
-  );
-  alert(
-    `Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
-  );
+    );
+    alert(
+      `Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
+      );
+    finalResult();
 }
 
 function startGame() {
@@ -239,14 +219,14 @@ function startGame() {
   // start game by getting player name, then welcome them
   playerName = getPlayerName();
   // greet the player with their name
-  console.log(`Hi ${playerName}! The game has 5 rounds! Get ready ...`);
+  // console.log(`Hi ${playerName}! The game has 5 rounds! Get ready ...`);
   alert(`Hi ${playerName}! The game has 5 rounds! Get ready ...`);
 
   game();
 
   finalScores();
   
-  finalResult();
+  // finalResult();
 
   gameIsRunning = false;
 }
