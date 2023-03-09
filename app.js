@@ -53,7 +53,7 @@ const getPlayerSelection = () => {
     `Choose ${ROCK}, ${PAPER} or ${SCISSORS}`,
     ''
   ).toUpperCase();
-  if (
+   if (
     playerSelection !== ROCK &&
     playerSelection !== PAPER &&
     playerSelection !== SCISSORS
@@ -67,7 +67,7 @@ const getPlayerSelection = () => {
 
 // GET COMPUTER CHOICE
 const computerPlay = () => {
-  for (i=0; i<3; i++) {
+  for (i = 0; i < 3; i++) {
     const randomValue = Math.floor(Math.random() * 3);
     if (randomValue === 0) {
       return ROCK;
@@ -148,7 +148,7 @@ function startGame() {
       const computerSelection = computerPlay();
       console.log(`Computer chose ${computerSelection}`);
 
-      // set round winner to undefined
+      // set round winner variable to empty
       let roundWinner;
 
       // get round winner
@@ -179,17 +179,13 @@ function startGame() {
       } else if (computerScore > playerScore) {
         console.log(`Better luck next time, ${playerName}. You lose.`) // if computerscore beats playerscore = lose
       } else
-        console.log("It's a tie!")
-        return finalResult; // if score is equal = tie
+        console.log("It's a draw!")
+        return finalResult; // if score is equal = draw
       }
-
     console.log(`Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}`); // show player final scores
     finalResult(); // declare the winner
-
   }
-
   game();
-
   }
 
   gameIsRunning = false;
