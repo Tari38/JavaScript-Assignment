@@ -5,7 +5,7 @@ const PAPER = 'PAPER';
 const SCISSORS = 'SCISSORS';
 const DEFAULT_PLAYER_SELECTION = ROCK;
 const DEFAULT_PLAYER_NAME = 'PLAYER';
-const ROUND_RESULT_DRAW = 'It\'s a draw! 😐';
+const ROUND_RESULT_DRAW = "It's a draw! 😐";
 const ROUND_RESULT_PLAYER_WINS = 'Yay! You win! 🥳';
 const ROUND_RESULT_COMPUTER_WINS = 'You lost! 😭';
 const FINAL_RESULT_DRAW = ROUND_RESULT_DRAW;
@@ -41,7 +41,7 @@ const ASCII_ART = `
 ⠀⠀⠀⠀⠀⠈⠻⣦⣀⠀⠀⠀⠀⠐⠲⠤⣤⣀⡀⠀⠀⠀⠀⠀⠉⢳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠶⠤⠤⠤⠶⠞⠋⠉⠙⠳⢦⣄⡀⠀⠀⠀⡷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠳⠦⠾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-`
+`;
 
 // FUNCTIONS & GAME LOGIC ----------------------------------------------
 
@@ -124,22 +124,18 @@ const getRoundCounter = () => {
     roundCounter = 'ROUND ' + (i + 1);
   }
   return roundCounter;
-}
+};
 
-const getRoundWinnerMessage = (
-  roundWinner
-) => {
+const getRoundWinnerMessage = (roundWinner) => {
   if (roundWinner === ROUND_RESULT_DRAW) {
     return ROUND_RESULT_DRAW;
   } else if (roundWinner === ROUND_RESULT_PLAYER_WINS) {
     return ROUND_RESULT_PLAYER_WINS;
-  } else
-    return ROUND_RESULT_COMPUTER_WINS;
+  } else return ROUND_RESULT_COMPUTER_WINS;
 };
 
 // Play the 5 rounds
 function game() {
-
   // let roundCounter = 0;
 
   // loop the rounds 5 times
@@ -151,8 +147,12 @@ function game() {
     const playerSelection = getPlayerSelection();
     const computerSelection = computerPlay();
 
-    console.log(`${roundCounter}:\n${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION} & Computer chose ${computerSelection}`);
-    
+    console.log(
+      `${roundCounter}:\n${playerName} chose ${
+        playerSelection || DEFAULT_PLAYER_SELECTION
+      } & Computer chose ${computerSelection}`
+    );
+
     let roundWinner;
 
     // get round winner
@@ -164,9 +164,17 @@ function game() {
 
     // create a pop up alert for the player
     console.log(
+      `${roundCounter}:\n${playerName} chose ${
+        playerSelection || DEFAULT_PLAYER_SELECTION
+      } & Computer chose ${computerSelection}` + 
+      ' \n' +
         getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
     );
     alert(
+      `${roundCounter}:\n${playerName} chose ${
+        playerSelection || DEFAULT_PLAYER_SELECTION
+      } & Computer chose ${computerSelection}` + 
+      ' \n' +
         getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
     );
 
@@ -227,7 +235,9 @@ function startGame() {
   playerName = getPlayerName();
   // greet the player with their name
 
-  console.log(`Hi ${playerName}! The game has 5 rounds! Get ready ...\n${ASCII_ART}`);
+  console.log(
+    `Hi ${playerName}! The game has 5 rounds! Get ready ...\n${ASCII_ART}`
+  );
   alert(`Hi ${playerName}! The game has 5 rounds! Get ready ...🚦`);
 
   game();
@@ -236,8 +246,10 @@ function startGame() {
 
   finalResult();
   // ask the user if they want to restart the game (yes or no prompt)
-  let restart = prompt("Do you want to restart the game? (Y or N)").toLowerCase();
-  if (restart === ("y" || "yes")) {
+  let restart = prompt(
+    'Do you want to restart the game? (Y or N)'
+  ).toLowerCase();
+  if (restart === ('y' || 'yes')) {
     //restart the game if yes
     restartGame();
   } else {
