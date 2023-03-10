@@ -14,6 +14,7 @@ const FINAL_RESULT_COMPUTER_WINS = ROUND_RESULT_COMPUTER_WINS;
 
 let playerName = '';
 let gameIsRunning = false;
+let roundCounter = 0;
 
 // set scores to 0;
 let playerScore = 0;
@@ -68,7 +69,7 @@ const getPlayerName = () => {
 // GET PLAYER CHOICE
 const getPlayerSelection = () => {
   const playerSelection = prompt(
-    `Choose ${ROCK}, ${PAPER} or ${SCISSORS}`,
+    `${roundCounter}:\nChoose ${ROCK}, ${PAPER} or ${SCISSORS}`,
     ''
   ).toUpperCase();
   if (
@@ -117,6 +118,14 @@ const playRound = (
   }
 };
 
+const getRoundCounter = () => {
+  let roundCounter = 0;
+  for (let i = 0; i < 5; i++) {
+    roundCounter = 'ROUND ' + (i + 1);
+  }
+  return roundCounter;
+}
+
 const getRoundWinnerMessage = (
   roundWinner
 ) => {
@@ -131,11 +140,12 @@ const getRoundWinnerMessage = (
 // Play the 5 rounds
 function game() {
 
-  let roundCounter = 0;
+  // let roundCounter = 0;
 
   // loop the rounds 5 times
   for (let i = 0; i < 5; i++) {
     //counting rounds
+    getRoundCounter();
     roundCounter = 'ROUND ' + (i + 1);
 
     const playerSelection = getPlayerSelection();
