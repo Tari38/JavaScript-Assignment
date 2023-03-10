@@ -232,7 +232,7 @@ function startGame() {
     restartGame();
   } else {
     //send a goodbye message if no
-    alert(`Thanks for playing! ${playerName} ! See you next time! 😀`);
+    alert(`Thanks for playing ${playerName}! See you next time! 😀`);
   }
 }
 
