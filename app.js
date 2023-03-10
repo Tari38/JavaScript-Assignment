@@ -14,7 +14,7 @@ const FINAL_RESULT_COMPUTER_WINS = ROUND_RESULT_COMPUTER_WINS;
 
 let playerName = '';
 let gameIsRunning = false;
-let roundCounter = 0;
+let roundCounter;
 
 // set scores to 0;
 let playerScore = 0;
@@ -118,14 +118,6 @@ const playRound = (
   }
 };
 
-const getRoundCounter = () => {
-  let roundCounter = 0;
-  for (let i = 0; i < 5; i++) {
-    roundCounter = 'ROUND ' + (i + 1);
-  }
-  return roundCounter;
-};
-
 const getRoundWinnerMessage = (roundWinner) => {
   if (roundWinner === ROUND_RESULT_DRAW) {
     return ROUND_RESULT_DRAW;
@@ -136,22 +128,15 @@ const getRoundWinnerMessage = (roundWinner) => {
 
 // Play the 5 rounds
 function game() {
-  // let roundCounter = 0;
+  roundCounter = 0;
 
   // loop the rounds 5 times
   for (let i = 0; i < 5; i++) {
-    //counting rounds
-    getRoundCounter();
+    
     roundCounter = 'ROUND ' + (i + 1);
 
     const playerSelection = getPlayerSelection();
     const computerSelection = computerPlay();
-
-    console.log(
-      `${roundCounter}:\n${playerName} chose ${
-        playerSelection || DEFAULT_PLAYER_SELECTION
-      } & Computer chose ${computerSelection}`
-    );
 
     let roundWinner;
 
@@ -162,22 +147,6 @@ function game() {
       roundWinner = playRound(computerSelection);
     }
 
-    // create a pop up alert for the player
-    console.log(
-      `${roundCounter}:\n${playerName} chose ${
-        playerSelection || DEFAULT_PLAYER_SELECTION
-      } & Computer chose ${computerSelection}` + 
-      ' \n' +
-        getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
-    );
-    alert(
-      `${roundCounter}:\n${playerName} chose ${
-        playerSelection || DEFAULT_PLAYER_SELECTION
-      } & Computer chose ${computerSelection}` + 
-      ' \n' +
-        getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
-    );
-
     // scoring logic
     if (roundWinner === ROUND_RESULT_DRAW) {
       drawScore++; // if a draw, no points added
@@ -186,6 +155,22 @@ function game() {
     } else if (roundWinner === ROUND_RESULT_COMPUTER_WINS) {
       computerScore++; // if computer wins, add a point to computer score
     }
+
+    // create a pop up alert for the player
+    console.log(
+      `${roundCounter}:\n${playerName} chose ${
+        playerSelection || DEFAULT_PLAYER_SELECTION
+      } & Computer chose ${computerSelection}` +
+        ' \n' +
+        getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
+    );
+    alert(
+      `${roundCounter}:\n${playerName} chose ${
+        playerSelection || DEFAULT_PLAYER_SELECTION
+      } & Computer chose ${computerSelection}` +
+        ' \n' +
+        getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
+    );
   }
 }
 
@@ -206,19 +191,21 @@ function finalResult() {
 // show player final scores
 function finalScores() {
   console.log(
-    `🏁 Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
+    `🏁 Final result:\nComputer: ${computerScore} \n${playerName}: ${playerScore} \nDraws: ${drawScore}`
   );
   alert(
-    `🏁 Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
+    `🏁 Final result:\nComputer: ${computerScore} \n${playerName}: ${playerScore} \nDraws: ${drawScore}`
   );
 }
 
 function restartGame() {
   // reset the variables to their initial values
   gameIsRunning = false;
-  round = 1;
+
   playerScore = 0;
   computerScore = 0;
+  drawScore = 0;
+  roundCounter = 0;
 
   // call startGame() function again
   startGame();
@@ -254,6 +241,7 @@ function startGame() {
     restartGame();
   } else {
     //send a goodbye message if no
+    console.log(`Thanks for playing ${playerName}! See you next time! 😀`);
     alert(`Thanks for playing ${playerName}! See you next time! 😀`);
   }
 }
