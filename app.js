@@ -131,8 +131,6 @@ const getRoundWinnerMessage = (
 // Play the 5 rounds
 function game() {
 
-  // console.log(ASCII_ART);
-
   let roundCounter = 0;
 
   // loop the rounds 5 times
@@ -143,8 +141,8 @@ function game() {
     const playerSelection = getPlayerSelection();
     const computerSelection = computerPlay();
 
-    console.log(`${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION} & Computer chose ${computerSelection}`);
-
+    console.log(`${roundCounter}:\n${playerName} chose ${playerSelection || DEFAULT_PLAYER_SELECTION} & Computer chose ${computerSelection}`);
+    
     let roundWinner;
 
     // get round winner
@@ -156,13 +154,9 @@ function game() {
 
     // create a pop up alert for the player
     console.log(
-      roundCounter +
-        ': \n' +
         getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
     );
     alert(
-      roundCounter +
-        ': \n' +
         getRoundWinnerMessage(roundWinner, playerSelection, computerSelection)
     );
 
@@ -183,8 +177,8 @@ function finalResult() {
     console.log(`${playerName} wins the match! 🥳`); // if playerscore beats computerscore = win
     alert(`${playerName} wins the match! 🥳`);
   } else if (computerScore > playerScore) {
-    console.log(`Better luck next time, ${playerName}🎮. You lose. 😭`); // if computerscore beats playerscore = lose
-    alert(`Better luck next time, ${playerName}🎮. You lose. 😭`);
+    console.log(`Better luck next time, ${playerName}. You lose. 😭`); // if computerscore beats playerscore = lose
+    alert(`Better luck next time, ${playerName}. You lose. 😭`);
   } else {
     console.log("It's a draw! 😐");
     alert("It's a draw! 😐");
@@ -194,22 +188,11 @@ function finalResult() {
 // show player final scores
 function finalScores() {
   console.log(
-    `🏁 Final result:\n💻Computer: ${computerScore}, 🎮${playerName}: ${playerScore}, Draws: ${drawScore}`
+    `🏁 Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
   );
   alert(
-    `🏁 Final result:\n💻Computer: ${computerScore}, 🎮${playerName}: ${playerScore}, Draws: ${drawScore}`
+    `🏁 Final result:\nComputer: ${computerScore}, ${playerName}: ${playerScore}, Draws: ${drawScore}`
   );
-}
-
-function restartGame() {
-  // reset the variables to their initial values
-  gameIsRunning = false;
-  round = 1;
-  playerScore = 0;
-  computerScore = 0;
-
-  // call startGame() function again
-  startGame();
 }
 
 function startGame() {
@@ -231,15 +214,21 @@ function startGame() {
   finalScores();
 
   finalResult();
-  // ask the user if they want to restart the game (yes or no prompt)
-  let restart = prompt("Do you want to restart the game? (Y or N)").toLowerCase();
-  if (restart === ("y" || "yes")) {
-    //restart the game if yes
-    restartGame();
-  } else {
-    //send a goodbye message if no
-    alert(`Thanks for playing! ${playerName} ! See you next time! 😀`);
-  }
+  //restart the game
+  restartGame();
+
 }
+
+function restartGame() {
+  // reset the variables to their initial values
+  gameIsRunning = false;
+  round = 1;
+  playerScore = 0;
+  computerScore = 0;
+
+  // call startGame() function again
+  startGame();
+}
+
 
 startGame();
